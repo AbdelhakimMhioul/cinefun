@@ -21,9 +21,7 @@
 
 	onMount(() => {
 		fetch(
-			`https://api.themoviedb.org/3/movie/${$page.params.id}?api_key=${
-				import.meta.env.VITE_MOVIE_DB_API_KEY
-			}&append_to_response=credits,videos,images`
+			`https://api.themoviedb.org/3/movie/${$page.params.id}?api_key=${process.env.VITE_MOVIE_DB_API_KEY}&append_to_response=credits,videos,images`
 		)
 			.then((res) => res.json())
 			.then((data) => (movie = data));
