@@ -8,20 +8,28 @@
 		nowPlayingMovies: Movie[] = [];
 	let genres: Genre[] = [];
 
+	import { MY_API_KEY } from '$lib/Env';
+
+	let myApiKey: string | boolean;
+
+	if (process.env.NODE_ENV === 'production') {
+		// For production
+		myApiKey = process.env.MY_API_KEY;
+	} else {
+		// For development
+		myApiKey = MY_API_KEY;
+	}
+
 	onMount(() => {
-		fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.VITE_MOVIE_DB_API_KEY}`)
+		fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${myApiKey}`)
 			.then((res) => res.json())
 			.then((res) => (popularMovies = res.results));
 
-		fetch(
-			`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.VITE_MOVIE_DB_API_KEY}`
-		)
+		fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${myApiKey}`)
 			.then((res) => res.json())
 			.then((res) => (nowPlayingMovies = res.results));
 
-		fetch(
-			`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.VITE_MOVIE_DB_API_KEY}`
-		)
+		fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${myApiKey}`)
 			.then((res) => res.json())
 			.then((res) => (genres = res.genres));
 	});
