@@ -16,7 +16,13 @@
 		genre_ids: [],
 		backdrop_path: '',
 		overview: '',
-		vote_average: 0
+		vote_average: 0,
+		credits: {
+			cast: []
+		},
+		images: {
+			backdrops: []
+		}
 	};
 
 	import { myApiKey } from '$lib/getEnv';
@@ -26,7 +32,10 @@
 			`https://api.themoviedb.org/3/movie/${$page.params.id}?api_key=${myApiKey}&append_to_response=credits,videos,images`
 		)
 			.then((res) => res.json())
-			.then((data) => (movie = data));
+			.then((data) => {
+				movie = data;
+				console.log(movie);
+			});
 	});
 </script>
 
@@ -106,14 +115,9 @@
 	<div
 		class="flex mx-[2.5rem] py-[1.5rem] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-600 hover:cursor-pointer scrollbar-track-gray-100 scrollbar-track-rounded-full overflow-x-scroll space-x-5"
 	>
-		<ActorInMovieCard />
-		<ActorInMovieCard />
-		<ActorInMovieCard />
-		<ActorInMovieCard />
-		<ActorInMovieCard />
-		<ActorInMovieCard />
-		<ActorInMovieCard />
-		<ActorInMovieCard />
+		{#each movie.credits['cast'] as actor}
+			<ActorInMovieCard {actor} />
+		{/each}
 	</div>
 </div>
 <!-- Images Sections -->
@@ -124,11 +128,10 @@
 	<div
 		class="grid grid-cols-1 gap-0 px-6 md:gap-5 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 place-items-center"
 	>
-		<ImageCard />
-		<ImageCard />
-		<ImageCard />
-		<ImageCard />
-		<ImageCard />
-		<ImageCard />
+		{#each movie.images['backdrops'] as backdrop, i}
+			{#if i < 6}
+				<ImageCard {backdrop} />
+			{/if}
+		{/each}
 	</div>
 </div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 </script>
 
-Genre
+{$page.params.id}

@@ -1,3 +1,8 @@
+import type { Actor } from './Actor';
+
+export interface Backdrop {
+	file_path: string;
+}
 export interface Movie {
 	id: number;
 	title: string;
@@ -7,4 +12,10 @@ export interface Movie {
 	backdrop_path: string;
 	overview: string;
 	vote_average: number;
+	credits: {
+		cast: Array<Actor>;
+	};
+	images: {
+		backdrops: Backdrop[];
+	};
 }

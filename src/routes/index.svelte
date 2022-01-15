@@ -2,13 +2,12 @@
 	import MovieCard from '$lib/MovieCard.svelte';
 	import type { Genre } from 'src/types/Genre';
 	import type { Movie } from 'src/types/Movie';
+	import { myApiKey } from '$lib/getEnv';
 	import { onMount } from 'svelte';
 
 	let popularMovies,
 		nowPlayingMovies: Movie[] = [];
 	let genres: Genre[] = [];
-
-	import { myApiKey } from '$lib/getEnv';
 
 	onMount(() => {
 		fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${myApiKey}`)

@@ -1,5 +1,10 @@
+<script lang="ts">
+	import type { Backdrop } from 'src/types/Movie';
+
+	export let backdrop: Backdrop;
+</script>
+
 <div class="relative hover:cursor-pointer">
-	<!-- svelte-ignore a11y-invalid-attribute -->
 	<a
 		href="#"
 		class="absolute inset-0 z-10 flex items-center justify-center text-center text-gray-300 duration-300 bg-base-300 opacity-0 hover:opacity-60 bg-opacity-80"
@@ -20,10 +25,6 @@
 		</svg>
 	</a>
 	<div class="flex flex-wrap content-center w-full h-full">
-		<img
-			src="https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5f7092e4a6026731360ae74b%2FThe-Walking-Dead%2F960x0.jpg%3Ffit%3Dscale"
-			class="mx-auto"
-			alt=""
-		/>
+		<img src={`https://image.tmdb.org/t/p/w500${backdrop.file_path}`} class="mx-auto" alt="" />
 	</div>
 </div>

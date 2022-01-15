@@ -1,12 +1,14 @@
-<script>
-	export let name;
+<script lang="ts">
+	import type { Movie } from 'src/types/Movie';
+
+	export let movie: Movie;
 </script>
 
-<a href="/movies/1" class="flex-shrink-0 text-center">
+<a href={`/movies/${movie.id}`} class="flex-shrink-0 text-center w-[150px] h-[225px] ">
 	<img
-		src="https://www.themoviedb.org/t/p/w150_and_h225_bestv2/gLhHHZUzeseRXShoDyC4VqLgsNv.jpg"
+		src={`https://www.themoviedb.org/t/p/w150_and_h225_bestv2/${movie.poster_path}`}
 		alt="Movie"
-		class="w-[130px] h-[195px] "
+		class="w-[150px] h-[225px]"
 	/>
-	<span class="font-roboto">{name}</span>
+	<p class="w-full">{movie.title}</p>
 </a>
