@@ -1,1 +1,4 @@
-Genre Page
+<script lang="ts">
+</script>
+
+Genre

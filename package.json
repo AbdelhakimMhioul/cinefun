@@ -19,6 +19,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.9.1",
 		"@typescript-eslint/parser": "^5.9.1",
 		"autoprefixer": "^10.4.2",
+		"axios": "^0.24.0",
 		"daisyui": "^1.22.2",
 		"eslint": "^8.6.0",
 		"eslint-config-prettier": "^8.3.0",
@@ -39,5 +40,6 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/AbdelhakimMhioul/cinefun.git"
-	}
+	},
+	"dependencies": {}
 }

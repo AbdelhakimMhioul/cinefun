@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import ActingBox from '$lib/ActingBox.svelte';
 	import MovieInActorCard from '$lib/MovieInActorCard.svelte';
 	import SocialIcons from '$lib/SocialIcons.svelte';
@@ -6,13 +6,11 @@
 
 <div class="flex space-x-9 pt-5 px-7 text-primary-content">
 	<div id="left-side" class="flex flex-col flex-shrink-0">
-		<div class="">
-			<img
-				src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/y9S3QzI3L5aARP8GYYO86rREKxU.jpg"
-				alt="Actor"
-				class="rounded-lg w-[300px] h-[450px] shadow-xl"
-			/>
-		</div>
+		<img
+			src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/y9S3QzI3L5aARP8GYYO86rREKxU.jpg"
+			alt="Actor"
+			class="rounded-lg w-[300px] h-[450px] shadow-xl"
+		/>
 		<SocialIcons />
 		<span class="block p-4 text-lg font-os-bold">Personal Info</span>
 		<div id="personal-info" class="flex flex-col px-4 space-y-4">

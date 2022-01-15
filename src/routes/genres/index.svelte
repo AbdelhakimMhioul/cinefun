@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import MovieCard from '$lib/MovieCard.svelte';
 </script>
 

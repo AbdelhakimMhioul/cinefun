@@ -1,35 +1,60 @@
-<script>
+<script lang="ts">
 	import ActorInMovieCard from '$lib/ActorInMovieCard.svelte';
 	import ImageCard from '$lib/ImageCard.svelte';
 	import MovieCreator from '$lib/MovieCreator.svelte';
 	import MovieOption from '$lib/MovieOption.svelte';
+
+	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
+	import type { Movie } from 'src/types/Movie';
+
+	let movie: Movie = {
+		id: 0,
+		title: '',
+		release_date: '',
+		poster_path: '',
+		genre_ids: [],
+		backdrop_path: '',
+		overview: '',
+		vote_average: 0
+	};
+
+	onMount(() => {
+		fetch(
+			`https://api.themoviedb.org/3/movie/${$page.params.id}?api_key=${
+				import.meta.env.VITE_MOVIE_DB_API_KEY
+			}&append_to_response=credits,videos,images`
+		)
+			.then((res) => res.json())
+			.then((data) => (movie = data));
+	});
 </script>
 
 <!-- Movie Sections -->
 <div class="flex mx-[2.5rem] py-[1.875rem] text-primary-content">
 	<div class="flex-shrink-0">
 		<img
-			src="https://flxt.tmsimg.com/assets/p8282918_b_v13_bf.jpg"
+			src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
 			alt="Poster"
-			class="w-[300px] h-[450px] rounded-2xl hover:opacity-90 hover:cursor-pointer transition-all duration-300 ease-in-out"
+			class="w-[300px] h-[450px] rounded-2xl hover:opacity-90 transition-all duration-300 ease-in-out"
 		/>
 	</div>
 	<div class="mx-[40px]">
-		<div>
-			<div class="text-[34px] tracking-wide font-os-bold flex">
-				<span class="mr-3">The Walking Dead</span>
-				<span class="font-os-regular">(2010)</span>
-			</div>
-			<div class="flex">
-				<span>Adventure, Action, Fantasy & Drama</span>
-				<span class="mx-2">&bull;</span>
-				<span>42min</span>
-			</div>
+		<div class="text-[34px] tracking-wide font-os-bold flex">
+			<span class="mr-3">{movie.title}</span>
+			<span class="font-os-regular">
+				({movie.release_date && new Date(movie.release_date).getFullYear()})
+			</span>
+		</div>
+		<div class="flex">
+			<span>Adventure, Action, Fantasy & Drama</span>
+			<span class="mx-2">&bull;</span>
+			<span>42min</span>
 		</div>
 		<div class="mt-5">
 			<div class="flex items-center">
-				<span class="pr-3">85%</span>
-				<div class="flex items-center justify-center space-x-2 text-white">
+				<span class="pr-3">{movie.vote_average * 10}%</span>
+				<div class="flex items-center justify-center space-x-2 text-primary-content">
 					<MovieOption
 						d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
 					/>
@@ -69,15 +94,7 @@
 		</div>
 		<div class="flex flex-col my-4 space-y-2">
 			<span class="text-2xl font-semibold tracking-wider">Overview</span>
-			<p>
-				Lorem ipsum dolor sit ametm, cum at magnam vero optio quia reprehenderit. Blanditiis ab
-				neque fugit quasi atque maxime architecto totam exercitationem? Ducimus fuga cum a
-				consectetur illum aut eius officia perferendis nulla, placeat nisi voluptatibus? Expedita
-				suscipit libero sequi perspiciatis, ab nisi aliquam veniam vitae modi non a quis cumque
-				harum adipisci fuga omnis dignissimos vero, sunt provident et aliquid nemo temporibus qui?
-				Doloremque labore voluptates fuga accusamus asperiores repellat neque dolorum reiciendis,
-				pariatur eaque rerum cupiditate ipsum dicta.
-			</p>
+			<p>{movie.overview}</p>
 		</div>
 		<div class="flex space-x-10">
 			<MovieCreator name="Frank Darabont" profession="Creator" />

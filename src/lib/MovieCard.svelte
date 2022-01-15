@@ -1,23 +1,29 @@
-<script>
+<script lang="ts">
 	import GenreCapsule from './GenreCapsule.svelte';
+	import type { Movie } from 'src/types/Movie';
+	import type { Genre } from 'src/types/Genre';
+
+	export let movie: Movie;
+	export let genres: Genre[];
+	$: movieGenres = genres.filter((genre) => movie.genre_ids.includes(genre.id));
 </script>
 
 <div class="content-center w-[90%] bg-base-200 border border-primary-content text-primary-content">
 	<div class="relative">
-		<a href="/movies/1">
+		<a href={`/movies/${movie.id}`}>
 			<img
-				src="https://m.media-amazon.com/images/I/71xZtfOsHdL._AC_SY679_.jpg"
+				src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`}
 				alt="Poster Path"
 				class="w-full h-[250px]"
 			/>
 			<span
-				class="inline-block object-cover px-3 pb-2 mt-3 tracking-wide uppercase truncate font-os-semibold"
+				class="block object-cover pl-3 pr-14 pb-2 mt-3 tracking-wide uppercase truncate font-os-semibold"
 			>
-				Avengers
+				{movie.title}
 			</span>
 		</a>
 		<button
-			class="absolute transition duration-200 ease-in-out cursor-pointer text-pink bottom-3 right-3 border-none active:scale-75"
+			class="absolute transition duration-200 ease-in-out cursor-pointer text-pink bottom-[.325rem] right-3 border-none active:scale-75"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -91,10 +97,8 @@
 		<span>85%</span>
 	</div>
 	<div class="flex py-2 overflow-x-scroll bg-base-300 rounded-bl rounded-br scrollbar-thin">
-		<GenreCapsule genre="GENRE 1" />
-		<GenreCapsule genre="GENRE 2" />
-		<GenreCapsule genre="GENRE 3" />
-		<GenreCapsule genre="GENRE 4" />
-		<GenreCapsule genre="GENRE 5" />
+		{#each movieGenres as genre}
+			<GenreCapsule name={genre.name} />
+		{/each}
 	</div>
 </div>

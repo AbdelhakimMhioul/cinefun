@@ -18,8 +18,6 @@
 	<link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
 </svelte:head>
 
-<!-- <LoginModal {setShowLoginModal} {showLoginModal} />
-<RegisterModal {setShowRegisterModal} {showRegisterModal} /> -->
 <Sidebar />
 <Navbar />
 <main class="ml-[4.5rem] bg-primary pb-5">

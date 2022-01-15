@@ -57,10 +57,6 @@
 	@apply flex flex-col items-center justify-center px-2 py-2 rounded-lg hover:bg-base-300 space-y-1;
 }
 
-.genre__capsule {
-	@apply rounded-full bg-base-100 text-primary-content px-3 py-2 font-os-bold ml-2 inline flex-shrink-0;
-}
-
 .grid-items {
 	@apply grid grid-cols-1 px-6 sm:grid-cols-2 sm:gap-y-1 md:grid-cols-3 md:gap-y-2 lg:grid-cols-4 lg:gap-y-3 place-items-center;
 }
