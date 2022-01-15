@@ -2,3 +2,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: 'OpenSans-Bold';
+		font-weight: 700;
+		font-style: normal;
+		src: url('/fonts/OpenSans/OpenSans-Bold.woff2') format('woff2');
+	}
+	@font-face {
+		font-family: 'OpenSans-Regular';
+		font-weight: 700;
+		font-style: normal;
+		src: url('/fonts/OpenSans/OpenSans-Regular.woff2') format('woff2');
+	}
+	@font-face {
+		font-family: 'OpenSans-ExtraBold';
+		font-weight: 700;
+		font-style: normal;
+		src: url('/fonts/OpenSans/OpenSans-ExtraBold.woff2') format('woff2');
+	}
+	@font-face {
+		font-family: 'OpenSans-Light';
+		font-weight: 700;
+		font-style: normal;
+		src: url('/fonts/OpenSans/OpenSans-Light.woff2') format('woff2');
+	}
+	@font-face {
+		font-family: 'OpenSans-Medium';
+		font-weight: 700;
+		font-style: normal;
+		src: url('/fonts/OpenSans/OpenSans-Medium.woff2') format('woff2');
+	}
+	@font-face {
+		font-family: 'OpenSans-SemiBold';
+		font-weight: 700;
+		font-style: normal;
+		src: url('/fonts/OpenSans/OpenSans-SemiBold.woff2') format('woff2');
+	}
+}
+
+.sidebar__button {
+	@apply flex flex-col items-center justify-center px-2 py-2 rounded-lg;
+}
