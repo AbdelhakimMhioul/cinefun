@@ -22,5 +22,7 @@
 <RegisterModal {setShowRegisterModal} {showRegisterModal} /> -->
 <Sidebar />
 <Navbar />
-<slot />
+<main class="ml-[4.5rem] bg-primary pb-5">
+	<slot />
+</main>
 <Footer />

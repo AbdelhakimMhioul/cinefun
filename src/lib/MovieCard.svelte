@@ -1,4 +1,8 @@
-<div class="content-center w-[90%] bg-gray-200 border border-gray-700 rounded">
+<script>
+	import GenreCapsule from './GenreCapsule.svelte';
+</script>
+
+<div class="content-center w-[90%] bg-base-200 border border-primary-content text-primary-content">
 	<div class="relative">
 		<a href="/movies/1">
 			<img
@@ -7,16 +11,17 @@
 				class="w-full h-[250px]"
 			/>
 			<span
-				class="inline-block object-cover px-3 pb-2 mt-3 tracking-wider text-gray-900 uppercase truncate rounded-tl rounded-tr"
-				>Avengers</span
+				class="inline-block object-cover px-3 pb-2 mt-3 tracking-wide uppercase truncate font-os-semibold"
 			>
+				Avengers
+			</span>
 		</a>
-		<span
-			class="absolute transition duration-200 ease-in-out cursor-pointer text-pink bottom-3 right-3 hover:scale-125"
+		<button
+			class="absolute transition duration-200 ease-in-out cursor-pointer text-pink bottom-3 right-3 border-none active:scale-75"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
-				class="w-8 h-8"
+				class="w-8 h-8 stroke-primary-content"
 				fill="none"
 				viewBox="0 0 24 24"
 				stroke="currentColor"
@@ -28,7 +33,7 @@
 					d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
 				/>
 			</svg>
-		</span>
+		</button>
 	</div>
 	<div class="flex items-center px-2 mb-3">
 		<div class="flex mr-2">
@@ -85,11 +90,11 @@
 		</div>
 		<span>85%</span>
 	</div>
-	<div class="flex py-2 overflow-x-scroll bg-gray-100 rounded-bl rounded-br scrollbar-hide">
-		<div class="flex-shrink-0 genre__capsule">GENRE 1</div>
-		<div class="flex-shrink-0 genre__capsule">GENRE 2</div>
-		<div class="flex-shrink-0 genre__capsule">GENRE 3</div>
-		<div class="flex-shrink-0 genre__capsule">GENRE 4</div>
-		<div class="flex-shrink-0 genre__capsule">GENRE 5</div>
+	<div class="flex py-2 overflow-x-scroll bg-base-300 rounded-bl rounded-br scrollbar-thin">
+		<GenreCapsule genre="GENRE 1" />
+		<GenreCapsule genre="GENRE 2" />
+		<GenreCapsule genre="GENRE 3" />
+		<GenreCapsule genre="GENRE 4" />
+		<GenreCapsule genre="GENRE 5" />
 	</div>
 </div>

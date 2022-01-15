@@ -1,4 +1,4 @@
-<div class="ml-[4.5rem] bg-gray-200 flex space-x-9 py-5 pl-2 pr-7">
+<div class="flex space-x-9 pt-5 px-7">
 	<div id="left-side" class="flex flex-col flex-shrink-0">
 		<div class="">
 			<img
