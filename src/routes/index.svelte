@@ -14,9 +14,11 @@
 
 	if (process.env.NODE_ENV === 'production') {
 		// For production
-		myApiKey = process.env.MY_API_KEY;
+		console.log('production');
+		myApiKey = process.env.VITE_MOVIE_DB_API_KEY;
 	} else {
 		// For development
+		console.log('development');
 		myApiKey = MY_API_KEY;
 	}
 
