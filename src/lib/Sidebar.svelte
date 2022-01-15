@@ -8,7 +8,7 @@
 	<button class="my-5 btn border-none">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			class="h-6 w-6"
+			class="h-7 w-7"
 			viewBox="0 0 50 50"
 			data-set-theme="light"
 			data-act-class="hidden"
@@ -19,7 +19,7 @@
 			/>
 		</svg>
 		<svg
-			class="h-6 w-6"
+			class="h-7 w-7"
 			viewBox="0 0 24 24"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"

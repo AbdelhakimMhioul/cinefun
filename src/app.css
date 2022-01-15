@@ -42,6 +42,14 @@
 	}
 }
 
+.flex-centween {
+	@apply flex items-center justify-between;
+}
+
+.flex-centcent {
+	@apply flex items-center justify-center;
+}
+
 .sidebar__button {
-	@apply flex flex-col items-center justify-center px-2 py-2 rounded-lg;
+	@apply flex flex-col items-center justify-center px-2 py-2 rounded-lg hover:bg-base-300;
 }

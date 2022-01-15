@@ -28,13 +28,15 @@ const config = {
 					'primary-content': '#1e293b', // For Text (Headings, Paragraphs, etc.)
 					'secondary-content': '#111827', // For Text (Sidebar)
 					'base-100': '#f9f9f9', // For Background
-					'base-200': '#d4d1cb' // For Background (Sidebar)
+					'base-200': '#d4d1cb', // For Background (Sidebar)
+					'base-300': '#c1bdbd', // For Background (Hover)
 				},
 				dark: {
 					'primary-content': '#d1e8d8', // For Text (Headings, Paragraphs, etc.)
 					'secondary-content': '#c4dfe6', // For Text (Sidebar)
 					'base-100': '#07575b', // For Background
-					'base-200': '#003B46' // For Background (Sidebar)
+					'base-200': '#003B46', // For Background (Sidebar)
+					'base-300': '#002837', // For Background (Hover)
 				}
 			}
 		]
