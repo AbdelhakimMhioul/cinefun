@@ -103,7 +103,7 @@ l-6 -133 -46 6 c-698 93 -1272 473 -1646 1092 -85 141 -109 164 -174 171 -64
 				</g>
 			</svg>
 		</a>
-		<a href="https://www.github.com/AbdelhakimMhioul" target="_blank">
+		<a href="https://github.com/AbdelhakimMhioul/cinefun" target="_blank">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				class="w-8 h-8 fill-primary-content"
