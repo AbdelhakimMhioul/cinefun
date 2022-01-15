@@ -8,19 +8,7 @@
 		nowPlayingMovies: Movie[] = [];
 	let genres: Genre[] = [];
 
-	import { MY_API_KEY } from '$lib/Env';
-
-	let myApiKey: string | boolean;
-
-	if (process.env.NODE_ENV === 'production') {
-		// For production
-		console.log('production');
-		myApiKey = process.env.VITE_MOVIE_DB_API_KEY;
-	} else {
-		// For development
-		console.log('development');
-		myApiKey = MY_API_KEY;
-	}
+	import { myApiKey } from '$lib/getEnv';
 
 	onMount(() => {
 		fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${myApiKey}`)
