@@ -1,20 +1,21 @@
 <script lang="ts">
 	import GenreCapsule from './GenreCapsule.svelte';
-	import type { Movie } from 'src/types/Movie';
 	import type { Genre } from 'src/types/Genre';
+	import type { TVShow } from 'src/types/TVShow';
 
-	export let movie: Movie;
+	export let tvshow: TVShow;
 	export let genres: Genre[];
-	$: movieGenres = genres.filter((genre) => movie.genre_ids.includes(genre.id));
-	$: numberEmptyStars = Math.ceil(5 - movie.vote_average / 2 - 1);
+	$: numberEmptyStars = Math.ceil(5 - tvshow.vote_average / 2 - 1);
+	$: tvshowGenres =
+		genres.length > 0 && genres.filter((genre) => tvshow.genre_ids.includes(genre.id));
 </script>
 
 <div class="content-center w-[90%] bg-base-200 border border-primary-content text-primary-content">
 	<div class="relative">
-		<a href={`/movies/${movie.id}`}>
-			{#if movie.poster_path}
+		<a href={`/tvshows/${tvshow.id}`}>
+			{#if tvshow.poster_path}
 				<img
-					src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`}
+					src={`https://image.tmdb.org/t/p/w400${tvshow.poster_path}`}
 					alt="Poster Path"
 					class="w-full h-[250px]"
 				/>
@@ -24,7 +25,7 @@
 			<span
 				class="block object-cover pl-3 pr-8 pb-2 mt-3 tracking-wide uppercase truncate font-os-semibold"
 			>
-				{movie.title}
+				{tvshow.name}
 			</span>
 		</a>
 	</div>
@@ -61,11 +62,18 @@
 				</svg>
 			{/each}
 		</div>
-		<span>{movie.vote_average * 10}%</span>
+		<span>{tvshow.vote_average * 10}%</span>
 	</div>
 	<div class="flex py-2 overflow-x-scroll bg-base-300 rounded-bl rounded-br scrollbar-thin">
-		{#each movieGenres as genre}
-			<GenreCapsule {genre} />
-		{/each}
+		{#if tvshowGenres.length > 0}
+			{#each tvshowGenres as genre}
+				<GenreCapsule {genre} />
+			{/each}
+		{:else}
+			<span
+				class="rounded-full bg-base-100 text-primary-content px-3 py-2 font-os-bold ml-2 inline flex-shrink-0"
+				>No Genres</span
+			>
+		{/if}
 	</div>
 </div>

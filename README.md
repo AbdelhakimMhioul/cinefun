@@ -8,11 +8,12 @@
 - [x] Design ActorCard(Name/Movies)
 - [x] Design Genre Specific Pages
 - [ ] Implement Loader
-- [ ] Dynamize The TVShows Page & Details of It
-- [ ] When There is no Image, Render Default Image
-- [ ] Infinite Scrolling in Actors & TVShows
+- [x] Dynamize The TVShows Page & Details of It
+- [x] When There is no Image, Render Default Image
+- [x] Infinite Scrolling in Actors & TVShows
 - [ ] Search Functionnality
 - [ ] Show Trailer/Images
 - [ ] Implement Movie Credits Section in Movie Page
-- [ ] Dynamize Acting Section in Actor Page
+- [x] Dynamize Acting Section in Actor Page
 - [ ] Implement Responsiveness
+- [ ] Refactor & Isolate Typescript from SvelteKit

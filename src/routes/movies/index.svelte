@@ -11,11 +11,9 @@
 	let page = 1;
 	let scrollY: number, innerHeight: number, clientHeight: number;
 
-	$: console.log(innerHeight, scrollY, clientHeight);
-
 	$: if (scrollY + innerHeight >= clientHeight) {
-		page++;
 		fetchMovies();
+		page++;
 	}
 
 	function fetchMovies() {
@@ -24,13 +22,11 @@
 		)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
 				movies = [...movies, ...data.results];
 			});
 	}
 
 	onMount(() => {
-		fetchMovies();
 		fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${myApiKey}`)
 			.then((res) => res.json())
 			.then((res) => (genres = res.genres));

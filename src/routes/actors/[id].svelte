@@ -35,6 +35,13 @@
 	}
 
 	$: movie_credits_count = actor.movie_credits['cast'].length;
+	$: movieCastsSorted = actor.movie_credits.cast
+		.filter((a) => a.release_date)
+		.sort((a, b) => {
+			let releaseDateA = new Date(a.release_date);
+			let releaseDateB = new Date(b.release_date);
+			return releaseDateB > releaseDateA ? 1 : -1;
+		});
 
 	function fetchActor() {
 		fetch(
@@ -43,6 +50,7 @@
 			.then((res) => res.json())
 			.then((res) => {
 				actor = res;
+				console.log(res);
 			});
 	}
 
@@ -94,7 +102,7 @@
 			<div
 				class="flex py-5 space-x-3 overflow-x-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-600 hover:cursor-pointer scrollbar-track-gray-100 scrollbar-track-rounded-full"
 			>
-				{#each actor.movie_credits.cast as movie, i}
+				{#each movieCastsSorted as movie, i}
 					{#if i < 5}
 						<MovieInActorCard {movie} />
 					{/if}
@@ -103,25 +111,10 @@
 		</div>
 		<div class="mt-6">
 			<span class="block pb-4 pl-3 text-sl font-os-bold">Acting</span>
-			<div
-				class="bg-base-100 border-t border-l border-r border-primary-content rounded-lg shadow-xl"
-			>
-				<div class="border-b border-primary-content">
-					<ActingBox />
-					<ActingBox />
-					<ActingBox />
-					<ActingBox />
-					<ActingBox />
-				</div>
-				<div class="border-b border-primary-content">
-					<ActingBox />
-					<ActingBox />
-					<ActingBox />
-					<ActingBox />
-					<ActingBox />
-					<ActingBox />
-					<ActingBox />
-				</div>
+			<div class="bg-base-100 border border-primary-content rounded-lg">
+				{#each movieCastsSorted as movie}
+					<ActingBox {movie} />
+				{/each}
 			</div>
 		</div>
 	</div>

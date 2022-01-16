@@ -1,5 +1,11 @@
+<script lang="ts">
+	import type { Movie } from 'src/types/Movie';
+
+	export let movie: Movie;
+</script>
+
 <div class="p-3 font-roboto">
-	<span>2021 -- </span>
-	<span class="font-semibold">Loki (6 Episodes) </span>
-	<span>as Miss Minutes (voice)</span>
+	<span>{new Date(movie.release_date).getFullYear()} -- </span>
+	<span class="font-semibold">{movie.title}</span>
+	<span>| {movie.character}</span>
 </div>

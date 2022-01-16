@@ -8,34 +8,35 @@
 	import { onMount } from 'svelte';
 	import type { Movie } from 'src/types/Movie';
 
-	let movie: Movie = {
+	let tvshow: TVShow = {
 		id: 0,
-		title: '',
-		release_date: '',
+		name: '',
+		first_air_date: '',
 		poster_path: '',
 		genre_ids: [],
 		backdrop_path: '',
 		overview: '',
 		vote_average: 0,
+		character: '',
 		credits: {
 			cast: []
 		},
 		images: {
 			backdrops: []
-		},
-		character: ''
+		}
 	};
 
 	import { myApiKey } from '$lib/getEnv';
+	import type { TVShow } from 'src/types/TVShow';
 
 	onMount(() => {
 		fetch(
-			`https://api.themoviedb.org/3/movie/${$page.params.id}?api_key=${myApiKey}&append_to_response=credits,videos,images`
+			`https://api.themoviedb.org/3/tv/${$page.params.id}?api_key=${myApiKey}&append_to_response=credits,videos,images`
 		)
 			.then((res) => res.json())
 			.then((data) => {
-				movie = data;
-				console.log(movie);
+				tvshow = data;
+				console.log(tvshow);
 			});
 	});
 </script>
@@ -44,16 +45,16 @@
 <div class="flex mx-[2.5rem] py-[1.875rem] text-primary-content">
 	<div class="flex-shrink-0">
 		<img
-			src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+			src={`https://image.tmdb.org/t/p/w500${tvshow.backdrop_path}`}
 			alt="Poster"
-			class="w-[300px] h-[450px] rounded-2xl hover:opacity-90 transition-all duration-300 ease-in-out"
+			class="w-[400px] h-[500px] rounded-2xl hover:opacity-90 transition-all duration-300 ease-in-out object-fill"
 		/>
 	</div>
 	<div class="mx-[40px]">
 		<div class="text-[34px] tracking-wide font-os-bold flex">
-			<span class="mr-3">{movie.title}</span>
+			<span class="mr-3">{tvshow.name}</span>
 			<span class="font-os-regular">
-				({movie.release_date && new Date(movie.release_date).getFullYear()})
+				({tvshow.first_air_date && new Date(tvshow.first_air_date).getFullYear()})
 			</span>
 		</div>
 		<div class="flex">
@@ -63,7 +64,7 @@
 		</div>
 		<div class="mt-5">
 			<div class="flex items-center">
-				<span class="pr-3">{movie.vote_average * 10}%</span>
+				<span class="pr-3">{tvshow.vote_average * 10}%</span>
 				<div class="flex items-center justify-center space-x-2 text-primary-content">
 					<MovieOption
 						d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
@@ -104,7 +105,7 @@
 		</div>
 		<div class="flex flex-col my-4 space-y-2">
 			<span class="text-2xl font-semibold tracking-wider">Overview</span>
-			<p>{movie.overview}</p>
+			<p>{tvshow.overview}</p>
 		</div>
 		<div class="flex space-x-10">
 			<MovieCreator name="Frank Darabont" profession="Creator" />
@@ -116,7 +117,7 @@
 	<div
 		class="flex mx-[2.5rem] py-[1.5rem] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-600 hover:cursor-pointer scrollbar-track-gray-100 scrollbar-track-rounded-full overflow-x-scroll space-x-5"
 	>
-		{#each movie.credits['cast'] as actor}
+		{#each tvshow.credits['cast'] as actor}
 			<ActorInMovieCard {actor} />
 		{/each}
 	</div>
@@ -129,7 +130,7 @@
 	<div
 		class="grid grid-cols-1 gap-0 px-6 md:gap-5 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 place-items-center"
 	>
-		{#each movie.images['backdrops'] as backdrop, i}
+		{#each tvshow.images['backdrops'] as backdrop, i}
 			{#if i < 6}
 				<ImageCard {backdrop} />
 			{/if}
