@@ -15,6 +15,7 @@ export interface Actor {
 	known_for: Movie[];
 	place_of_birth: string;
 	also_known_as: string[];
+	known_for_department: string;
 	biography: string;
 	gender: number;
 	birthday: string;

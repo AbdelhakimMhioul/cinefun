@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+	import SidebarMenu from './SidebarMenu.svelte';
 </script>
 
 <aside
@@ -10,7 +11,7 @@
 			xmlns="http://www.w3.org/2000/svg"
 			class="h-7 w-7"
 			viewBox="0 0 50 50"
-			data-set-theme="light"
+			data-set-theme="dark"
 			data-act-class="hidden"
 		>
 			<path
@@ -23,7 +24,7 @@
 			viewBox="0 0 24 24"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
-			data-set-theme="dark"
+			data-set-theme="light"
 			data-act-class="hidden"
 		>
 			<circle cx="11.9998" cy="11.9998" r="5.75375" fill="currentColor" />
@@ -63,56 +64,20 @@
 	</button>
 	<!-- Side Menus -->
 	<div class="flex flex-col space-y-4 text-xs">
-		<a href="/movies" class="sidebar__button">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="h-6 w-6"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"
-				/>
-			</svg>
-			<span>Movies</span>
-		</a>
-		<a href="/actors" class="sidebar__button">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="h-6 w-6"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-				/>
-			</svg>
-			<span>Actors</span>
-		</a>
-		<a href="/tvshows" class="sidebar__button">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="h-6 w-6"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-				/>
-			</svg>
-			<span>TV Shows</span>
-		</a>
+		<SidebarMenu
+			url="/movies"
+			title="Movies"
+			d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"
+		/>
+		<SidebarMenu
+			url="/actors"
+			title="Actors"
+			d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+		/>
+		<SidebarMenu
+			url="/tvshows"
+			title="TV Shows"
+			d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+		/>
 	</div>
 </aside>

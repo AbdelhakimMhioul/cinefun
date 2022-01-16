@@ -1,23 +1,31 @@
+<script context="module" lang="ts">
+	import getGenres from '$lib/getGenres';
+	import getNowPlayingMovies from '$lib/getNowPlayingMovies';
+	import getPopularMovies from '$lib/getPopularMovies';
+
+	export async function load() {
+		const { genres } = await getGenres();
+		const { results: popularMovies } = await getPopularMovies();
+		const { results: nowPlayingMovies } = await getNowPlayingMovies();
+		return {
+			props: {
+				popularMovies,
+				nowPlayingMovies,
+				genres
+			}
+		};
+	}
+</script>
+
 <script lang="ts">
 	import MovieCard from '/src/components/MovieCard.svelte';
 
 	import type { Genre } from '$lib/types/Genre';
 	import type { Movie } from '$lib/types/Movie';
-	import getGenres from '$lib/getGenres';
-	import getNowPlayingMovies from '$lib/getNowPlayingMovies';
-	import getPopularMovies from '$lib/getPopularMovies';
 
-	import { onMount } from 'svelte';
-
-	let popularMovies: Movie[],
+	export let popularMovies: Movie[],
 		nowPlayingMovies: Movie[] = [];
-	let genres: Genre[] = [];
-
-	onMount(() => {
-		getPopularMovies().then((res) => (popularMovies = res.results));
-		getNowPlayingMovies().then((res) => (nowPlayingMovies = res.results));
-		getGenres().then((res) => (genres = res.genres));
-	});
+	export let genres: Genre[] = [];
 </script>
 
 <div id="popular-movies">

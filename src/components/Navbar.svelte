@@ -5,17 +5,28 @@
 	import { fade } from 'svelte/transition';
 	import getSearchedItems from '$lib/getSearchedItems';
 	import type { Movie } from '$lib/types/Movie';
-	import type { TVShow } from '$lib/types/TVShow';
 	import Logo from './Logo.svelte';
 
 	let searchInput: string = '';
 	let showResults: boolean = false;
-	let searchResults: Array<Movie | TVShow> = [];
+	let searchResults: Array<Movie> = [];
 
-	$: getSearchedItems(searchInput).then((res) => {
-		searchResults = res.results;
-	});
+	$: {
+		if (searchInput) {
+			getSearchedItems(searchInput).then((res) => {
+				searchResults = res.results.slice(0, 5);
+			});
+		} else {
+			searchResults = [];
+		}
+	}
+
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape') showResults = true;
+	}
 </script>
+
+<svelte:window on:keydown={handleKeydown} />
 
 <header
 	class="px-6 py-2 ml-[4.5rem] text-lg border-b border-gray-500 font-os-regular flex-centween"
@@ -51,14 +62,13 @@
 					/>
 				</svg>
 			</button>
-
 			{#if showResults && searchInput.length > 0}
 				<div
 					out:fade={{ duration: 200 }}
 					class="absolute flex flex-col justify-center top-10 bg-base-300 w-full z-10 divide-y divide-secondary-content"
 				>
 					{#each searchResults as item}
-						<SearchResultBox {item} />
+						<SearchResultBox {item} on:clicked={() => (showResults = false)} />
 					{/each}
 				</div>
 			{/if}

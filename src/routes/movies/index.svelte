@@ -1,3 +1,16 @@
+<script context="module" lang="ts">
+	import getGenres from '$lib/getGenres';
+
+	export async function load() {
+		const { genres } = await getGenres();
+		return {
+			props: {
+				genres
+			}
+		};
+	}
+</script>
+
 <script lang="ts">
 	import MovieCard from '/src/components/MovieCard.svelte';
 
@@ -5,11 +18,9 @@
 	import type { Genre } from '$lib/types/Genre';
 
 	import { myApiKey } from '$lib/getEnv';
-	import { onMount } from 'svelte';
-	import getGenres from '$lib/getGenres';
 
 	let movies: Movie[] = [];
-	let genres: Genre[] = [];
+	export let genres: Genre[];
 
 	let page = 1;
 	let scrollY: number, innerHeight: number, clientHeight: number;
@@ -24,10 +35,6 @@
 			});
 		page++;
 	}
-
-	onMount(() => {
-		getGenres().then((res) => (genres = res.genres));
-	});
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight />

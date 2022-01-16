@@ -1,7 +1,8 @@
 <script context="module" lang="ts">
-	import type { Movie } from '$lib/types/Movie';
+	import getOneMovie from '$lib/getOneMovie';
+
 	export async function load({ params }) {
-		const movie: Movie = await getOneMovie(params.id);
+		const movie = await getOneMovie(params.id);
 		return { props: { movie } };
 	}
 </script>
@@ -12,9 +13,8 @@
 	import MovieCreator from '/src/components/MovieCreator.svelte';
 	import MovieOption from '/src/components/MovieOption.svelte';
 
-	import getOneMovie from '$lib/getOneMovie';
-
-	export let movie: Movie;
+	export let movie: any;
+	$: movieGenres = movie.genres.map((movie) => movie.name).join(', ');
 </script>
 
 <!-- Movie Sections -->
@@ -34,7 +34,7 @@
 			</span>
 		</div>
 		<div class="flex">
-			<span>Adventure, Action, Fantasy & Drama</span>
+			<span>{movieGenres}</span>
 			<span class="mx-2">&bull;</span>
 			<span>42min</span>
 		</div>
@@ -84,7 +84,9 @@
 			<p>{movie.overview}</p>
 		</div>
 		<div class="flex space-x-10">
-			<MovieCreator name="Frank Darabont" profession="Creator" />
+			{#each movie.credits.cast.slice(0, 3) as actor}
+				<MovieCreator name={actor.name} profession={actor.known_for_department} />
+			{/each}
 		</div>
 	</div>
 </div>
@@ -106,10 +108,8 @@
 	<div
 		class="grid grid-cols-1 gap-0 px-6 md:gap-5 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 place-items-center"
 	>
-		{#each movie.images['backdrops'] as backdrop, i}
-			{#if i < 6}
-				<ImageCard {backdrop} />
-			{/if}
+		{#each movie.images['backdrops'].slice(0, 9) as backdrop, i}
+			<ImageCard {backdrop} />
 		{/each}
 	</div>
 </div>
