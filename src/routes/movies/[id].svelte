@@ -1,36 +1,20 @@
+<script context="module" lang="ts">
+	import type { Movie } from '$lib/types/Movie';
+	export async function load({ params }) {
+		const movie: Movie = await getOneMovie(params.id);
+		return { props: { movie } };
+	}
+</script>
+
 <script lang="ts">
 	import ActorInMovieCard from '/src/components/ActorInMovieCard.svelte';
 	import ImageCard from '/src/components/ImageCard.svelte';
 	import MovieCreator from '/src/components/MovieCreator.svelte';
 	import MovieOption from '/src/components/MovieOption.svelte';
 
-	import type { Movie } from '$lib/types/Movie';
 	import getOneMovie from '$lib/getOneMovie';
 
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
-
-	let movie: Movie = {
-		id: 0,
-		title: '',
-		release_date: '',
-		poster_path: '',
-		genre_ids: [],
-		backdrop_path: '',
-		overview: '',
-		vote_average: 0,
-		credits: {
-			cast: []
-		},
-		images: {
-			backdrops: []
-		},
-		character: ''
-	};
-
-	onMount(() => {
-		getOneMovie($page.params.id).then((res) => (movie = res));
-	});
+	export let movie: Movie;
 </script>
 
 <!-- Movie Sections -->

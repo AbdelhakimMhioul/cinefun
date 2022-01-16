@@ -1,34 +1,22 @@
+<script context="module" lang="ts">
+	import getOneActor from '$lib/getOneActor';
+
+	import type { Actor } from '$lib/types/Actor';
+
+	export async function load({ params }) {
+		const actor: Actor = await getOneActor(params.id);
+		return { props: { actor } };
+	}
+</script>
+
 <script lang="ts">
 	import ActingBox from '/src/components/ActingBox.svelte';
 	import MovieInActorCard from '/src/components/MovieInActorCard.svelte';
 	import SocialIcons from '/src/components/SocialIcons.svelte';
 
-	import type { Actor } from '$lib/types/Actor';
-	import getOneActor from '$lib/getOneActor';
 	import _calculateAge from '$lib/_calculateAge';
 
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
-
-	let actor: Actor = {
-		id: '',
-		name: '',
-		description: '',
-		profile_path: '',
-		known_for: [],
-		gender: 1,
-		place_of_birth: '',
-		also_known_as: [],
-		biography: '',
-		birthday: '',
-		movie_credits: {
-			cast: []
-		},
-		external_ids: {},
-		homepage: '',
-		popularity: 0,
-		character: ''
-	};
+	export let actor: Actor;
 
 	$: movie_credits_count = actor.movie_credits['cast'].length;
 	$: movieCastsSorted = actor.movie_credits.cast
@@ -38,10 +26,6 @@
 			let releaseDateB = new Date(b.release_date);
 			return releaseDateB > releaseDateA ? 1 : -1;
 		});
-
-	onMount(() => {
-		getOneActor($page.params.id).then((res) => (actor = res));
-	});
 </script>
 
 <div class="flex space-x-9 pt-5 px-7 text-primary-content">

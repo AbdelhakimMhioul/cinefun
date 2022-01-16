@@ -1,43 +1,21 @@
+<script context="module" lang="ts">
+	import getOneTVShow from '$lib/getOneTVShow';
+
+	import type { TVShow } from '$lib/types/TVShow';
+
+	export async function load({ params }) {
+		const tvshow: TVShow = await getOneTVShow(params.id);
+		return { props: { tvshow } };
+	}
+</script>
+
 <script lang="ts">
 	import ActorInMovieCard from '/src/components/ActorInMovieCard.svelte';
 	import ImageCard from '/src/components/ImageCard.svelte';
 	import MovieCreator from '/src/components/MovieCreator.svelte';
 	import MovieOption from '/src/components/MovieOption.svelte';
 
-	import { myApiKey } from '$lib/getEnv';
-	import type { TVShow } from '$lib/types/TVShow';
-
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
-
-	let tvshow: TVShow = {
-		id: 0,
-		name: '',
-		first_air_date: '',
-		poster_path: '',
-		genre_ids: [],
-		backdrop_path: '',
-		overview: '',
-		vote_average: 0,
-		character: '',
-		credits: {
-			cast: []
-		},
-		images: {
-			backdrops: []
-		}
-	};
-
-	onMount(() => {
-		fetch(
-			`https://api.themoviedb.org/3/tv/${$page.params.id}?api_key=${myApiKey}&append_to_response=credits,videos,images`
-		)
-			.then((res) => res.json())
-			.then((data) => {
-				tvshow = data;
-				console.log(tvshow);
-			});
-	});
+	export let tvshow: TVShow;
 </script>
 
 <!-- Movie Sections -->

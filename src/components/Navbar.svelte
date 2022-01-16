@@ -1,13 +1,19 @@
 <script lang="ts">
-	import type { SearchResult } from '$lib/types/SearchResult';
-
 	import SearchResultBox from './SearchResultBox.svelte';
 
 	import OutClick from 'svelte-outclick';
+	import { fade } from 'svelte/transition';
+	import getSearchedItems from '$lib/getSearchedItems';
+	import type { Movie } from '$lib/types/Movie';
+	import type { TVShow } from '$lib/types/TVShow';
 
-	let searchResults: any;
+	let searchInput: string = '';
+	let showResults: boolean = false;
+	let searchResults: Array<Movie | TVShow> = [];
 
-	let showResults: boolean = true;
+	$: getSearchedItems(searchInput).then((res) => {
+		searchResults = res.results;
+	});
 </script>
 
 <header
@@ -50,6 +56,8 @@ l-78 -70 -35 30 c-75 67 -177 46 -224 -45 -36 -70 17 -170 99 -188 28 -6 30
 	<OutClick on:outclick={() => (showResults = false)}>
 		<div class="w-3/5 text-secondary-content flex-centcent relative">
 			<input
+				on:focus={() => (showResults = true)}
+				bind:value={searchInput}
 				type="text"
 				placeholder="Search Movies (Click (Ctrl + /) to Focus)"
 				class="w-full h-10 px-3 py-2 border-2 border-primary focus:outline-none bg-primary rounded-[.3rem] rounded-tr-none rounded-br-none"
@@ -74,15 +82,14 @@ l-78 -70 -35 30 c-75 67 -177 46 -224 -45 -36 -70 17 -170 99 -188 28 -6 30
 				</svg>
 			</button>
 
-			{#if showResults}
+			{#if showResults && searchInput.length > 0}
 				<div
+					out:fade={{ duration: 200 }}
 					class="absolute flex flex-col justify-center top-10 bg-base-300 w-full z-10 divide-y divide-secondary-content"
 				>
-					<SearchResultBox />
-					<SearchResultBox />
-					<SearchResultBox />
-					<SearchResultBox />
-					<SearchResultBox />
+					{#each searchResults as item}
+						<SearchResultBox {item} />
+					{/each}
 				</div>
 			{/if}
 		</div>

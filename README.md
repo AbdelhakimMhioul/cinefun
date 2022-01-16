@@ -20,3 +20,4 @@
 - [ ] Implement Responsiveness
 - [x] Refactor & Isolate Typescript from SvelteKit
 - [ ] Fix the Dark/Light Switch Bug
+- [ ] Add Custom 404

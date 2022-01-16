@@ -1,4 +1,8 @@
 <script lang="ts">
+	import type { Movie } from '$lib/types/Movie';
+	import type { TVShow } from '$lib/types/TVShow';
+
+	export let item: Movie | TVShow;
 </script>
 
 <a href="/movies" class="h-full py-2 px-5 items-center flex space-x-5">
@@ -7,5 +11,5 @@
 		alt=""
 		class="w-20 h-20 object-cover rounded-xl"
 	/>
-	<span>Avengers</span>
+	<span>{item.id}</span>
 </a>
