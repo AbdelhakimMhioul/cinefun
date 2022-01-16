@@ -12,9 +12,11 @@
 - [x] When There is no Image, Render Default Image
 - [x] Infinite Scrolling in Actors & TVShows
 - [ ] Search Functionnality
+  - [x] Design Dropdown
+  - [ ] Dynamize It
 - [ ] Show Trailer/Images
 - [ ] Implement Movie Credits Section in Movie Page
 - [x] Dynamize Acting Section in Actor Page
 - [ ] Implement Responsiveness
-- [ ] Refactor & Isolate Typescript from SvelteKit
+- [x] Refactor & Isolate Typescript from SvelteKit
 - [ ] Fix the Dark/Light Switch Bug

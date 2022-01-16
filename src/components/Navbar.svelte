@@ -1,3 +1,15 @@
+<script lang="ts">
+	import type { SearchResult } from '$lib/types/SearchResult';
+
+	import SearchResultBox from './SearchResultBox.svelte';
+
+	import OutClick from 'svelte-outclick';
+
+	let searchResults: any;
+
+	let showResults: boolean = true;
+</script>
+
 <header
 	class="px-6 py-2 ml-[4.5rem] text-lg border-b border-gray-500 font-os-regular flex-centween"
 >
@@ -35,32 +47,46 @@ l-78 -70 -35 30 c-75 67 -177 46 -224 -45 -36 -70 17 -170 99 -188 28 -6 30
 			</g>
 		</svg>
 	</a>
-	<div class="flex-grow text-secondary-content flex-centcent">
-		<input
-			type="text"
-			placeholder="Search Movies (Click (Ctrl + /) to Focus)"
-			class="w-3/5 h-10 px-3 py-2 border-2 border-primary focus:outline-none bg-primary rounded-[.3rem] rounded-tr-none rounded-br-none"
-			id="search"
-		/>
-		<button
-			class="w-20 h-10 bg-base-200 border-2 border-l-0 border-primary flex-centcent hover:bg-base-300"
-		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="h-6 w-6"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
+	<OutClick on:outclick={() => (showResults = false)}>
+		<div class="w-3/5 text-secondary-content flex-centcent relative">
+			<input
+				type="text"
+				placeholder="Search Movies (Click (Ctrl + /) to Focus)"
+				class="w-full h-10 px-3 py-2 border-2 border-primary focus:outline-none bg-primary rounded-[.3rem] rounded-tr-none rounded-br-none"
+				id="search"
+			/>
+			<button
+				class="w-20 h-10 bg-base-200 border-2 border-l-0 border-primary flex-centcent hover:bg-base-300"
 			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-				/>
-			</svg>
-		</button>
-	</div>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="h-6 w-6"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+					/>
+				</svg>
+			</button>
+
+			{#if showResults}
+				<div
+					class="absolute flex flex-col justify-center top-10 bg-base-300 w-full z-10 divide-y divide-secondary-content"
+				>
+					<SearchResultBox />
+					<SearchResultBox />
+					<SearchResultBox />
+					<SearchResultBox />
+					<SearchResultBox />
+				</div>
+			{/if}
+		</div>
+	</OutClick>
 	<div class="flex items-center justify-center space-x-5">
 		<a href="https://twitter.com/HkMhl" target="_blank">
 			<svg
