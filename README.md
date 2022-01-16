@@ -1,5 +1,7 @@
 # Tasks To Finish
 
+## Mandatory Tasks
+
 - [x] Design Navbar(Logo/Search/Socials)
 - [x] Design Sidebar With Dark Mode Switch
 - [x] Design Movies/Actors/TVShows Pages
@@ -19,6 +21,10 @@
 - [x] Fix the Dark/Light Switch Bug
 - [ ] Show Trailer/Images
 - [x] Implement Movie Credits Section in Movie Page
-- [ ] Implement Loader
 - [ ] Implement Responsiveness
 - [x] Add Genres Page
+
+## Optional Tasks
+
+- [ ] Add Starred Movies/TVShows
+- [ ] Implement Loader

@@ -1,6 +1,5 @@
-<script>
-	export let name;
-	export let profession;
+<script lang="ts">
+	export let name: string, profession: string;
 </script>
 
 <div class="flex flex-col">

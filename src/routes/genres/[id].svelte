@@ -20,8 +20,8 @@
 
 	let pageNum = 1;
 	let scrollY: number, innerHeight: number, clientHeight: number;
-
 	let movies: Movie[] = [];
+	export let genres: Genre[];
 
 	$: if (scrollY + innerHeight >= clientHeight) {
 		fetch(
@@ -32,17 +32,17 @@
 				movies = movies.concat(
 					res.results.filter((movie) => movie.genre_ids.includes(parseInt($page.params.id)))
 				);
-				pageNum++;
 			});
+		pageNum++;
 	}
 
-	export let genres: Genre[];
+	$: genre = genres.find((el) => el.id === parseInt($page.params.id)).name;
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight />
 
 <div class="px-10 py-7">
-	<span class="heading">All Movies</span>
+	<span class="heading">All Movies For Genre : {genre}</span>
 </div>
 <div id="movie-genres" class="grid-items" bind:clientHeight>
 	{#each movies as movie}

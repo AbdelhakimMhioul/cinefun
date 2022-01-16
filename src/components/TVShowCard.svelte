@@ -1,7 +1,7 @@
 <script lang="ts">
 	import GenreCapsule from './GenreCapsule.svelte';
-	import type { Genre } from 'src/types/Genre';
-	import type { TVShow } from 'src/types/TVShow';
+	import type { Genre } from '$lib/types/Genre';
+	import type { TVShow } from '$lib/types/TVShow';
 
 	export let tvshow: TVShow;
 	export let genres: Genre[];

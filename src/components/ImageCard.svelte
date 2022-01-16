@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Backdrop } from 'src/types/Movie';
+	import type { Backdrop } from '$lib/types/Movie';
 
 	export let backdrop: Backdrop;
 </script>

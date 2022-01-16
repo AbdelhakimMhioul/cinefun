@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Social } from 'src/types/Actor';
+	import type { Social } from '$lib/types/Actor';
 
 	export let socialIds: Social;
 	export let homepage: string;

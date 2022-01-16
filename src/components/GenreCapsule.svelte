@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Genre } from 'src/types/Genre';
+	import type { Genre } from '$lib/types/Genre';
 
 	export let genre: Genre;
 </script>
