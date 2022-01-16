@@ -1,11 +1,13 @@
 <script lang="ts">
-	import ActingBox from '$lib/ActingBox.svelte';
-	import MovieInActorCard from '$lib/MovieInActorCard.svelte';
-	import SocialIcons from '$lib/SocialIcons.svelte';
+	import ActingBox from '/src/components/ActingBox.svelte';
+	import MovieInActorCard from '/src/components/MovieInActorCard.svelte';
+	import SocialIcons from '/src/components/SocialIcons.svelte';
+
+	import type { Actor } from '$lib/types/Actor';
+	import getOneActor from '$lib/getOneActor';
+	import _calculateAge from '$lib/_calculateAge';
 
 	import { page } from '$app/stores';
-	import { myApiKey } from '$lib/getEnv';
-	import type { Actor } from 'src/types/Actor';
 	import { onMount } from 'svelte';
 
 	let actor: Actor = {
@@ -28,12 +30,6 @@
 		character: ''
 	};
 
-	function _calculateAge(birthday) {
-		let thisYear = new Date().getFullYear();
-		let bithdayYear = new Date(birthday).getFullYear();
-		return thisYear - bithdayYear;
-	}
-
 	$: movie_credits_count = actor.movie_credits['cast'].length;
 	$: movieCastsSorted = actor.movie_credits.cast
 		.filter((a) => a.release_date)
@@ -43,18 +39,9 @@
 			return releaseDateB > releaseDateA ? 1 : -1;
 		});
 
-	function fetchActor() {
-		fetch(
-			`https://api.themoviedb.org/3/person/${$page.params.id}?api_key=${myApiKey}&language=en-US&append_to_response=images,known_for_department,movie_credits,tv_credits,external_ids`
-		)
-			.then((res) => res.json())
-			.then((res) => {
-				actor = res;
-				console.log(res);
-			});
-	}
-
-	onMount(() => fetchActor());
+	onMount(() => {
+		getOneActor($page.params.id).then((res) => (actor = res));
+	});
 </script>
 
 <div class="flex space-x-9 pt-5 px-7 text-primary-content">

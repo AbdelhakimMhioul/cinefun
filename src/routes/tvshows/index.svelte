@@ -1,8 +1,10 @@
 <script lang="ts">
+	import TvShowCard from '/src/components/TVShowCard.svelte';
+
 	import { myApiKey } from '$lib/getEnv';
-	import TvShowCard from '$lib/TVShowCard.svelte';
-	import type { Genre } from 'src/types/Genre';
-	import type { TVShow } from 'src/types/TVShow';
+	import type { Genre } from '$lib/types/Genre';
+	import type { TVShow } from '$lib/types/TVShow';
+
 	import { onMount } from 'svelte';
 
 	let tvshows: TVShow[] = Array<{

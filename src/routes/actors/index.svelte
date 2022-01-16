@@ -1,17 +1,17 @@
 <script lang="ts">
-	import ActorCard from '$lib/ActorCard.svelte';
+	import ActorCard from '/src/components/ActorCard.svelte';
+
 	import { myApiKey } from '$lib/getEnv';
-	import type { Actor } from 'src/types/Actor';
+	import type { Actor } from '$lib/types/Actor';
 
 	let actors: Actor[] = [];
 
 	function fetchActors() {
 		fetch(
-			`https://api.themoviedb.org/3/person/popular?api_key=${myApiKey}&language=en-US&page=${page}&append_to_response=images,known_for_department`
+			`https://api.themoviedb.org/3/person/popular?api_key=${myApiKey}&language=en-US&page=${page}&append_to_response=images`
 		)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
 				actors = [...actors, ...data.results];
 			});
 	}

@@ -1,12 +1,14 @@
 <script lang="ts">
-	import ActorInMovieCard from '$lib/ActorInMovieCard.svelte';
-	import ImageCard from '$lib/ImageCard.svelte';
-	import MovieCreator from '$lib/MovieCreator.svelte';
-	import MovieOption from '$lib/MovieOption.svelte';
+	import ActorInMovieCard from '/src/components/ActorInMovieCard.svelte';
+	import ImageCard from '/src/components/ImageCard.svelte';
+	import MovieCreator from '/src/components/MovieCreator.svelte';
+	import MovieOption from '/src/components/MovieOption.svelte';
+
+	import type { Movie } from '$lib/types/Movie';
+	import getOneMovie from '$lib/getOneMovie';
 
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import type { Movie } from 'src/types/Movie';
 
 	let movie: Movie = {
 		id: 0,
@@ -26,17 +28,8 @@
 		character: ''
 	};
 
-	import { myApiKey } from '$lib/getEnv';
-
 	onMount(() => {
-		fetch(
-			`https://api.themoviedb.org/3/movie/${$page.params.id}?api_key=${myApiKey}&append_to_response=credits,videos,images`
-		)
-			.then((res) => res.json())
-			.then((data) => {
-				movie = data;
-				console.log(movie);
-			});
+		getOneMovie($page.params.id).then((res) => (movie = res));
 	});
 </script>
 

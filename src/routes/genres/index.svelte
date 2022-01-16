@@ -1,5 +1,4 @@
 <script lang="ts">
-	import MovieCard from '$lib/MovieCard.svelte';
 </script>
 
 <div class="px-10 py-7">

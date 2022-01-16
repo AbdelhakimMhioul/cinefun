@@ -1,12 +1,14 @@
 <script lang="ts">
-	import ActorInMovieCard from '$lib/ActorInMovieCard.svelte';
-	import ImageCard from '$lib/ImageCard.svelte';
-	import MovieCreator from '$lib/MovieCreator.svelte';
-	import MovieOption from '$lib/MovieOption.svelte';
+	import ActorInMovieCard from '/src/components/ActorInMovieCard.svelte';
+	import ImageCard from '/src/components/ImageCard.svelte';
+	import MovieCreator from '/src/components/MovieCreator.svelte';
+	import MovieOption from '/src/components/MovieOption.svelte';
+
+	import { myApiKey } from '$lib/getEnv';
+	import type { TVShow } from '$lib/types/TVShow';
 
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import type { Movie } from 'src/types/Movie';
 
 	let tvshow: TVShow = {
 		id: 0,
@@ -25,9 +27,6 @@
 			backdrops: []
 		}
 	};
-
-	import { myApiKey } from '$lib/getEnv';
-	import type { TVShow } from 'src/types/TVShow';
 
 	onMount(() => {
 		fetch(

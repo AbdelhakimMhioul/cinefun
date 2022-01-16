@@ -1,9 +1,12 @@
 <script lang="ts">
-	import MovieCard from '$lib/MovieCard.svelte';
-	import type { Movie } from 'src/types/Movie';
+	import MovieCard from '/src/components/MovieCard.svelte';
+
+	import type { Movie } from '$lib/types/Movie';
+	import type { Genre } from '$lib/types/Genre';
+
 	import { myApiKey } from '$lib/getEnv';
 	import { onMount } from 'svelte';
-	import type { Genre } from 'src/types/Genre';
+	import getGenres from '$lib/getGenres';
 
 	let movies: Movie[] = [];
 	let genres: Genre[] = [];
@@ -12,11 +15,6 @@
 	let scrollY: number, innerHeight: number, clientHeight: number;
 
 	$: if (scrollY + innerHeight >= clientHeight) {
-		fetchMovies();
-		page++;
-	}
-
-	function fetchMovies() {
 		fetch(
 			`https://api.themoviedb.org/3/movie/popular?api_key=${myApiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`
 		)
@@ -24,12 +22,11 @@
 			.then((data) => {
 				movies = [...movies, ...data.results];
 			});
+		page++;
 	}
 
 	onMount(() => {
-		fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${myApiKey}`)
-			.then((res) => res.json())
-			.then((res) => (genres = res.genres));
+		getGenres().then((res) => (genres = res.genres));
 	});
 </script>
 

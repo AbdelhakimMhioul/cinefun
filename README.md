@@ -17,3 +17,4 @@
 - [x] Dynamize Acting Section in Actor Page
 - [ ] Implement Responsiveness
 - [ ] Refactor & Isolate Typescript from SvelteKit
+- [ ] Fix the Dark/Light Switch Bug

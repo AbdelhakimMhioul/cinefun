@@ -1,26 +1,22 @@
 <script lang="ts">
-	import MovieCard from '$lib/MovieCard.svelte';
-	import type { Genre } from 'src/types/Genre';
-	import type { Movie } from 'src/types/Movie';
-	import { myApiKey } from '$lib/getEnv';
+	import MovieCard from '/src/components/MovieCard.svelte';
+
+	import type { Genre } from '$lib/types/Genre';
+	import type { Movie } from '$lib/types/Movie';
+	import getGenres from '$lib/getGenres';
+	import getNowPlayingMovies from '$lib/getNowPlayingMovies';
+	import getPopularMovies from '$lib/getPopularMovies';
+
 	import { onMount } from 'svelte';
 
-	let popularMovies,
+	let popularMovies: Movie[],
 		nowPlayingMovies: Movie[] = [];
 	let genres: Genre[] = [];
 
 	onMount(() => {
-		fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${myApiKey}`)
-			.then((res) => res.json())
-			.then((res) => (popularMovies = res.results));
-
-		fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${myApiKey}`)
-			.then((res) => res.json())
-			.then((res) => (nowPlayingMovies = res.results));
-
-		fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${myApiKey}`)
-			.then((res) => res.json())
-			.then((res) => (genres = res.genres));
+		getPopularMovies().then((res) => (popularMovies = res.results));
+		getNowPlayingMovies().then((res) => (nowPlayingMovies = res.results));
+		getGenres().then((res) => (genres = res.genres));
 	});
 </script>
 
