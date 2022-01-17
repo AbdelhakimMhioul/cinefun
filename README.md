@@ -19,7 +19,7 @@
   - [x] Design Dropdown
   - [x] Dynamize It
 - [x] Fix the Dark/Light Switch Bug
-- [ ] Show Trailer/Images
+- [x] Show Trailer
 - [x] Implement Movie Credits Section in Movie Page
 - [x] Implement Responsiveness
 - [x] Add Genres Page
