@@ -3,7 +3,6 @@
 
 	export async function load({ params }) {
 		const movie = await getOneMovie(params.id);
-		console.log(movie);
 		return { props: { movie } };
 	}
 </script>
