@@ -12,6 +12,8 @@
 		name: '';
 		first_air_date: '';
 		poster_path: '';
+		episode_run_time: [0];
+		genres: Genre[];
 		genre_ids: [];
 		backdrop_path: '';
 		overview: '';
@@ -51,7 +53,7 @@
 
 <svelte:window bind:scrollY bind:innerHeight />
 
-<div class="px-10 py-7">
+<div class="px-6 md:px-10 py-6 md:py-7">
 	<span class="heading">TV Shows</span>
 </div>
 <div id="popular-tv-shows" class="grid-items" bind:clientHeight>

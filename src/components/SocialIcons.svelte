@@ -5,7 +5,7 @@
 	export let homepage: string;
 </script>
 
-<div id="social-media" class="flex p-4 space-x-4">
+<div id="social-media" class="hidden md:flex p-4 space-x-4">
 	{#if homepage}
 		<a href={homepage} class="duration-200 hover:scale-110" target="_blank">
 			<svg

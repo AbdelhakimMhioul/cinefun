@@ -9,7 +9,9 @@
 	$: numberEmptyStars = Math.ceil(5 - movie.vote_average / 2 - 1);
 </script>
 
-<div class="content-center w-[90%] bg-base-200 border border-primary-content text-primary-content">
+<div
+	class="content-center w-full md:w-[90%] bg-base-200 border border-primary-content text-primary-content"
+>
 	<div class="relative">
 		<a href={`/movies/${movie.id}`}>
 			{#if movie.poster_path}

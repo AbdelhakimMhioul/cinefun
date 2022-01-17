@@ -7,7 +7,7 @@
 <div class="relative hover:cursor-pointer">
 	<a
 		href="#"
-		class="absolute inset-0 z-10 flex items-center justify-center text-center text-gray-300 duration-300 bg-base-300 opacity-0 hover:opacity-60 bg-opacity-80"
+		class="absolute inset-0 z-10 flex items-center justify-center text-center text-gray-200 duration-300 bg-base-300 opacity-0 hover:opacity-60 bg-opacity-80"
 	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -25,6 +25,6 @@
 		</svg>
 	</a>
 	<div class="flex flex-wrap content-center w-full h-full">
-		<img src={`https://image.tmdb.org/t/p/w500${backdrop.file_path}`} class="mx-auto" alt="" />
+		<img src={`https://image.tmdb.org/t/p/w500${backdrop.file_path}`} class="w-full" alt="" />
 	</div>
 </div>

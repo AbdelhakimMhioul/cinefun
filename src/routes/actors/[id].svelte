@@ -28,16 +28,16 @@
 		});
 </script>
 
-<div class="flex space-x-9 pt-5 px-7 text-primary-content">
+<div class="md:flex space-y-4 md:space-x-9 pt-5 px-6 md:px-7 text-primary-content">
 	<div id="left-side" class="flex flex-col flex-shrink-0">
 		<img
 			src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${actor.profile_path}`}
 			alt="Actor"
-			class="rounded-lg w-[300px] h-[450px] shadow-xl"
+			class="rounded-2xl w-[300px] md:w-[300px] h-[300px] md:h-[450px] shadow-xl object-cover"
 		/>
 		<SocialIcons homepage={actor.homepage} socialIds={actor.external_ids} />
-		<span class="block p-4 text-lg font-os-bold">Personal Info</span>
-		<div id="personal-info" class="flex flex-col px-4 space-y-4">
+		<span class="hidden md:block p-4 text-lg font-os-bold">Personal Info</span>
+		<div id="personal-info" class="hidden md:flex flex-col px-4 space-y-4">
 			<div>
 				<span class="block font-semibold">Known Credits</span>
 				<span class="block text-sm">{movie_credits_count}</span>
@@ -66,12 +66,12 @@
 		<span class="block py-3 text-4xl font-os-bold">{actor.name}</span>
 		<div class="flex flex-col space-y-2">
 			<span class="text-lg font-os-semibold">Biography</span>
-			<p class="text-clip">{actor.biography}</p>
+			<p class="text-clip">{actor.biography.substring(0, 500) + ' ...'}</p>
 		</div>
 		<div>
 			<span class="block pt-3 pb-1 font-os-semibold">Known For</span>
 			<div
-				class="flex py-5 space-x-3 overflow-x-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-600 hover:cursor-pointer scrollbar-track-gray-100 scrollbar-track-rounded-full"
+				class="flex py-3 md:py-5 space-x-3 overflow-x-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-600 hover:cursor-pointer scrollbar-track-gray-100 scrollbar-track-rounded-full"
 			>
 				{#each movieCastsSorted as movie, i}
 					{#if i < 5}

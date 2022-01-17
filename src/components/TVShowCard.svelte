@@ -10,7 +10,9 @@
 		genres.length > 0 && genres.filter((genre) => tvshow.genre_ids.includes(genre.id));
 </script>
 
-<div class="content-center w-[90%] bg-base-200 border border-primary-content text-primary-content">
+<div
+	class="content-center w-full md:w-[90%] bg-base-200 border border-primary-content text-primary-content"
+>
 	<div class="relative">
 		<a href={`/tvshows/${tvshow.id}`}>
 			{#if tvshow.poster_path}

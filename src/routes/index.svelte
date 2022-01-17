@@ -29,7 +29,7 @@
 </script>
 
 <div id="popular-movies">
-	<div class="px-10 py-7">
+	<div class="px-6 md:px-10 py-6 md:py-7">
 		<span class="heading">Popular Movies</span>
 	</div>
 	{#if genres && genres.length > 0}
@@ -41,7 +41,7 @@
 	{/if}
 </div>
 <div id="now-playing-movies">
-	<div class="px-10 py-7">
+	<div class="px-6 md:px-10 py-6 md:py-7">
 		<span class="heading">Now Playing Movies</span>
 	</div>
 	{#if genres && genres.length > 0}

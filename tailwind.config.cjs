@@ -16,6 +16,10 @@ const config = {
 				'os-extrabold': withDefaultFonts('OpenSans-Extrabold'),
 				'os-light': withDefaultFonts('OpenSans-Light'),
 				'os-medium': withDefaultFonts('OpenSans-Medium')
+			},
+			padding: {
+				'1/2': '50%',
+				full: '100%'
 			}
 		}
 	},

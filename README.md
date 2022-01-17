@@ -21,7 +21,7 @@
 - [x] Fix the Dark/Light Switch Bug
 - [ ] Show Trailer/Images
 - [x] Implement Movie Credits Section in Movie Page
-- [ ] Implement Responsiveness
+- [x] Implement Responsiveness
 - [x] Add Genres Page
 
 ## Optional Tasks

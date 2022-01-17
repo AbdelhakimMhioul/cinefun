@@ -42,7 +42,7 @@
 <svelte:window bind:scrollY bind:innerHeight />
 
 <div class="px-10 py-7">
-	<span class="heading">All Movies For Genre : {genre}</span>
+	<span class="heading">Genre : {genre}</span>
 </div>
 <div id="movie-genres" class="grid-items" bind:clientHeight>
 	{#each movies as movie}

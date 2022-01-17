@@ -20,7 +20,7 @@
 
 <Sidebar />
 <Navbar />
-<main class="ml-[4.5rem] bg-primary pb-5">
+<main class="ml-[3.5rem] md:ml-[4.5rem] bg-primary pb-5">
 	<slot />
 </main>
 <Footer />
